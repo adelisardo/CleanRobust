@@ -5,10 +5,11 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>74b63d4c-f1ec-4525-81ad-71d1350e6f6d</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
 	  <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.3.1" />
 	  <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.3.1" />
 	  <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.3.1" />
