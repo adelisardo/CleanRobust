@@ -1,4 +1,5 @@
 ﻿namespace CleanRobust.Domain.Entities;
+
 public class Customer : EntityBase
 {
     public string Firstname { get; set; }
