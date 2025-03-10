@@ -23,6 +23,6 @@ public class CustomerController : BaseController
     public async Task<ActionResult<Guid>> Update(UpdateCustomerCommand command) => await Mediator.Send(command);
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<int>> Delete(Guid id) => await Mediator.Send(new DeleteCustomerCommand(id));
+    public async Task<ActionResult<Guid>> Delete(Guid id) => await Mediator.Send(new DeleteCustomerCommand(id));
 
 }
