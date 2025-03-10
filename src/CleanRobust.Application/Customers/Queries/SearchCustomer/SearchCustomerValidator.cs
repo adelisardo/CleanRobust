@@ -4,5 +4,6 @@ public class SearchCustomerValidator : AbstractValidator<SearchCustomerQuery>
 {
     public SearchCustomerValidator()
     {
+        RuleFor(c => c.Keyword).MaximumLength(20).WithName("Keyword");
     }
 }

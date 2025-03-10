@@ -1,4 +1,5 @@
 ﻿
+using CleanRobust.Domain.Entities.CustomerAggregate;
 
 namespace CleanRobust.Application.Customers.Commands.CreateCustomer;
 
@@ -14,6 +15,9 @@ public class CreateCustomerHandler :  IRequestHandler<CreateCustomerCommand, Gui
 
     public async Task<Guid> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var obj = _mapper.Map<Customer>(request);
+        _dbContext.Customers.Add(obj);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        return obj.Id;
     }
 }

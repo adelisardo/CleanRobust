@@ -6,5 +6,6 @@ public class DeleteCustomerValidator : AbstractValidator<DeleteCustomerCommand>
 {
     public DeleteCustomerValidator()
     {
+        RuleFor(c => c.Id).NotNull().WithName("Id");
     }
 }

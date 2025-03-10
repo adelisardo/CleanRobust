@@ -13,6 +13,8 @@ public class GetCustomerQueryHandler : IRequestHandler<GetCustomerQuery, GetCust
 
     public async Task<GetCustomerDTO> Handle(GetCustomerQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _mapper.ProjectTo<GetCustomerDTO>
+            (_dbContext.Customers.Where(c => c.Id == request.Id))
+            .FirstOrDefaultAsync(cancellationToken);
     }
 }

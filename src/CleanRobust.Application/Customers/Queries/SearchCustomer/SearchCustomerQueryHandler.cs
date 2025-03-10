@@ -17,6 +17,11 @@ public class SearchCustomerQueryHandler : IRequestHandler<SearchCustomerQuery, L
 
     public async Task<List<SearchCustomerDTO>> Handle(SearchCustomerQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var query = _dbContext.Customers.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(request.Keyword))
+        {
+            query = query.Where(c => c.Firstname.Contains(request.Keyword) || c.Lastname.Contains(request.Keyword));
+        }
+        return await _mapper.ProjectTo<SearchCustomerDTO>(query).ToListAsync(cancellationToken);
     }
 }
