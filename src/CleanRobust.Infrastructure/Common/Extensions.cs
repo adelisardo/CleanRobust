@@ -22,6 +22,6 @@ public static class Extensions
 
     public static T FromJson<T>(this string value) => value != null ? JsonSerializer.Deserialize<T>(value) : default;
 
-    public static string ToJson<T>(this T value) => !value.IsDefault() ? JsonSerializer.Serialize(value) : default;
+    public static string ToJson<T>(this T value) => !value.IsDefault() ? JsonSerializer.Serialize(value , value.GetType()) : default;
 
 }
