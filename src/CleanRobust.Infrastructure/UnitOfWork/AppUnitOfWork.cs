@@ -3,6 +3,7 @@ using CleanRobust.Domain.Entities.CustomerAggregate;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Text.Json;
 
 namespace CleanRobust.Infrastructure.UnitOfWork;
 
@@ -12,11 +13,9 @@ public class AppUnitOfWork : IAppUnitOfWork
     public DbSet<Customer> Customers => _dbContext.Set<Customer>();
 
     private AppDbContext _dbContext;
-    private Mediator _mediator;
-    public AppUnitOfWork(AppDbContext dbContext, Mediator mediator)
+    public AppUnitOfWork(AppDbContext dbContext)
     {
         _dbContext = dbContext;
-        _mediator = mediator;
     }
 
     public async Task<Result> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -77,8 +76,8 @@ public class AppUnitOfWork : IAppUnitOfWork
 
     private async Task AfterSaveChangesAsync(IReadOnlyList<EventBase> domainEvents, IReadOnlyList<EventStore> eventStores)
     {
-        if (domainEvents.Count > 0)
-            await Task.WhenAll(domainEvents.Select(@event => _mediator.Publish(@event)));
+        //if (domainEvents.Count > 0)
+        //    await Task.WhenAll(domainEvents.Select(@event => _mediator.Publish(@event)));
 
         if (eventStores.Count > 0)
         {
