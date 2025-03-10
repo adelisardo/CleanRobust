@@ -4,6 +4,8 @@ public class CustomerDeletedEvent : EventBase
 {
     public CustomerDeletedEvent(Guid id, string firstname, string lastname, DateOnly dateOfBirth, string phoneNumber, string email, string bankAccountNumber)
     {
+        AggregateId = id;
+     
         Id = id;
         Firstname = firstname;
         Lastname = lastname;
